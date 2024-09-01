@@ -49,7 +49,7 @@ class BMICalculatorTest {
     void findCoderWithWorstBMIWhenListNotEmpty() {
         //given
         List<Coder> coders=new ArrayList<>();
-        coders.add(new Coder(1.80,605));
+        coders.add(new Coder(1.80,65));
         coders.add(new Coder(1.82,98));
         coders.add(new Coder(1.82,64.7));
 
@@ -61,5 +61,16 @@ class BMICalculatorTest {
                 ()->assertEquals(1.82,coderWithWorstBMI.getHeight()),
                 ()->assertEquals(98,coderWithWorstBMI.getWeight())
         );
+    }
+    @Test
+    void findCoderWithWorstBMIWhenLisEmpty() {
+        //given
+        List<Coder> coders=new ArrayList<>();
+
+        //when
+        Coder coderWithWorstBMI=BMICalculator.findCoderWithWorstBMI(coders);
+
+        //then
+       assertNull(coderWithWorstBMI);
     }
 }
