@@ -1,19 +1,28 @@
 package hmayda.abdessamad;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DietPlannerTest {
 
     private DietPlanner dietPlanner;
+    @BeforeAll
+    static void beforeAll(){
+        System.out.println("Before running DietPlannerTest");
+    }
+
+    @AfterAll
+    static void afterAll(){
+        System.out.println("After running DietPlannerTest");
+    }
 
     @BeforeEach
     void initialization(){
         this.dietPlanner=new DietPlanner(20,30,50);
     }
+
+
 
 
     @Test

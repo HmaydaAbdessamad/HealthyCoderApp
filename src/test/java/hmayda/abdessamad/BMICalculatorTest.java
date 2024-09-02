@@ -1,5 +1,7 @@
 package hmayda.abdessamad;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -11,6 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BMICalculatorTest {
 
+    @BeforeAll
+    static void beforeAll(){
+        System.out.println("Before running BMICalculatorTest");
+    }
+
+    @AfterAll
+    static void afterAll(){
+        System.out.println("After running BMICalculatorTest");
+    }
     @Test
     void shouldReturnTrueWhenDietIsRecommended() {
         //given
