@@ -2,6 +2,7 @@ package hmayda.abdessamad;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -57,7 +58,7 @@ class BMICalculatorTest {
         //then
         assertThrows(ArithmeticException.class,executable);
     }
-    @Test
+    @RepeatedTest(value=5,name = RepeatedTest.LONG_DISPLAY_NAME)
     void findCoderWithWorstBMIWhenListNotEmpty() {
         //given
         List<Coder> coders=new ArrayList<>();
