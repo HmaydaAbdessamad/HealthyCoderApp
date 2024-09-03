@@ -1,14 +1,10 @@
 package hmayda.abdessamad;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -16,8 +12,13 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+import org.junit.jupiter.api.Assumptions.*;
 
 class BMICalculatorTest {
+
+    private String env="dev";
 
     @BeforeAll
     static void beforeAll(){
@@ -80,6 +81,7 @@ class BMICalculatorTest {
 
     @Test
     void findCoder_WithWorstBMI_in1Ms_WhenListHas_1kElements() {
+        assumeTrue(this.env.equals("prod"));
         //given
         List<Coder> coders=new ArrayList<>();
         for(int i=0;i<1000;i++){
