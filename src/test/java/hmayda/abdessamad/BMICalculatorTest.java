@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +24,12 @@ class BMICalculatorTest {
     static void afterAll(){
         System.out.println("After running BMICalculatorTest");
     }
-    @Test
-    void shouldReturnTrueWhenDietIsRecommended() {
+    @ParameterizedTest
+    @ValueSource(doubles = {89.0,95.0,110.0})
+    void shouldReturnTrueWhenDietIsRecommended(double coderWeight) {
         //given
-        double height=1.6;
-        double weight=90;
+        double height=1.72;
+        double weight=coderWeight;
         //when
         boolean dietRecommended=BMICalculator.isDietRecommended(weight,height);
         //then
