@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -26,7 +27,7 @@ class BMICalculatorTest {
         System.out.println("After running BMICalculatorTest");
     }
     @ParameterizedTest(name = "Weight={0},Height={1}")
-    @CsvSource(value = {"89.0,1.72","95.0,1.75","110.0,1.78"})
+    @CsvFileSource(resources = {"/diet-recommended-input-data.csv"},numLinesToSkip = 1)
     void shouldReturnTrueWhenDietIsRecommended(double coderWeight,double coderHeight) {
         //given
         double height=coderHeight;
