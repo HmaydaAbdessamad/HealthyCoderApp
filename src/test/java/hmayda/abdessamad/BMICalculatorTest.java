@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -58,7 +59,8 @@ class BMICalculatorTest {
         //then
         assertThrows(ArithmeticException.class,executable);
     }
-    @RepeatedTest(value=5,name = RepeatedTest.LONG_DISPLAY_NAME)
+
+    @Test
     void findCoderWithWorstBMIWhenListNotEmpty() {
         //given
         List<Coder> coders=new ArrayList<>();
@@ -75,6 +77,21 @@ class BMICalculatorTest {
                 ()->assertEquals(98,coderWithWorstBMI.getWeight())
         );
     }
+
+    @Test
+    void findCoder_WithWorstBMI_in1Ms_WhenListHas_1kElements() {
+        //given
+        List<Coder> coders=new ArrayList<>();
+        for(int i=0;i<1000;i++){
+            coders.add(new Coder(1+i,10+i));
+        }
+
+        //when
+        Executable executable=()->BMICalculator.findCoderWithWorstBMI(coders);
+
+        //then
+        assertTimeout(Duration.ofMillis(400),executable);
+    }
     @Test
     void findCoderWithWorstBMIWhenLisEmpty() {
         //given
@@ -86,7 +103,7 @@ class BMICalculatorTest {
         //then
        assertNull(coderWithWorstBMI);
     }
-    @Test
+    @RepeatedTest(value=5,name = RepeatedTest.LONG_DISPLAY_NAME)
     void findCoderWithWorstBMIWhenLisContainOneCoder() {
         //given
         List<Coder> coders=new ArrayList<>();
